@@ -31,7 +31,7 @@
 1. 克隆项目代码：
 
     ```bash
-    git clone https://github.com/yourusername/yourproject.git
+    git clone https://github.com/yszaryszar/xy-ai.git
     cd yourproject
     ```
 
