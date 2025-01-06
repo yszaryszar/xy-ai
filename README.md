@@ -69,7 +69,7 @@
 ## 目录结构
 
 ```plaintext
-yourproject/
+xy-ai/
 ├── backend/
 │   ├── app.py
 │   ├── requirements.txt
