@@ -1,0 +1,21 @@
+{
+  "name": "xy-ai",
+  "version": "0.0.0",
+  "description": "新语AI写作助手",
+  "author": "Jiu Yang <yszaryszar@gmail.com> (https://jiuyang.pro)",
+  "license": "MIT",
+  "homepage": "https://jiuyang.pro",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yszaryszar/xy-ai"
+  },
+  "bugs": {
+    "url": "https://github.com/yszaryszar/xy-ai/issues"
+  },
+  "keywords": [
+    "xy-ai"
+  ],
+  "devDependencies": {
+    "cz-git": "^1.11.0"
+  }
+}
