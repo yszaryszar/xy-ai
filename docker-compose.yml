@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    networks:
+      - app-network
+
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./certs:/etc/nginx/certs
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - app-network
+
+  acme:
+    image: neilpang/acme.sh
+    container_name: acme.sh
+    entrypoint: "/bin/sh -c"
+    environment:
+      - ALI_Key=${ALI_KEY}
+      - ALI_Secret=${ALI_SECRET}
+    command: |
+      "acme.sh --issue --dns dns_ali -d xyai.xin -d api.xyai.xin
+      && cp /root/.acme.sh/xyai.xin/* /etc/nginx/certs/
+      && nginx -s reload"
+    volumes:
+      - ./certs:/etc/nginx/certs
+    depends_on:
+      - nginx
+    networks:
+      - app-network
+
+networks:
+  app-network:
