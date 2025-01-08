@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   backend:
@@ -9,6 +9,7 @@ services:
       - "8000:8000"
     networks:
       - app-network
+    restart: always
 
   frontend:
     build:
@@ -16,6 +17,7 @@ services:
     container_name: frontend
     networks:
       - app-network
+    restart: always
 
   nginx:
     build:
@@ -31,6 +33,7 @@ services:
       - frontend
     networks:
       - app-network
+    restart: always
 
   acme:
     image: neilpang/acme.sh
@@ -52,3 +55,4 @@ services:
 
 networks:
   app-network:
+    driver: bridge

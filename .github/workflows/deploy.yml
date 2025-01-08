@@ -26,6 +26,6 @@ jobs:
         ssh -o StrictHostKeyChecking=no root@8.218.251.198 "
         cd /root/wwwroot/xy-ai &&
         git pull origin master &&
-        docker-compose down &&
-        docker-compose up -d --build
+        docker compose down &&
+        docker compose up -d --build
         "
