@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/yszaryszar/xy-ai/compare/v0.0.1...v0.0.2) (2025-01-08)
+
+
+### Features
+
+* :sparkles: 添加了自动部署到服务器的 GitHub Actions 工作流，以及后端和前端的 Docker 支持，并更新了前端构建流程和依赖项。这一改进简化了部署过程，增强了项目的可移植性和持续集成能力 ([caae021](https://github.com/yszaryszar/xy-ai/commit/caae0214fdbc7bf283386db36a54b6ef8eb6588f))
+
 ### [0.0.1](https://github.com/yszaryszar/xy-ai/compare/v0.0.0...v0.0.1) (2025-01-06)
 
 ## 0.0.0 (2025-01-06)
