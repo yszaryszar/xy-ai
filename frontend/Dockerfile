@@ -1,13 +1,15 @@
-# 使用 Node.js 构建前端
+# 使用 Node.js 构建前端代码
 FROM node:23.5 as builder
 WORKDIR /app
 
 # 安装 pnpm
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# 复制前端代码并安装依赖
+# 复制代码并安装依赖
 COPY . .
 RUN pnpm install && pnpm run build
 
-# 输出构建产物到指定目录
-CMD ["cp", "-r", "dist", "/frontend-dist"]
+# 第二阶段：仅包含构建产物
+FROM alpine
+WORKDIR /frontend-dist
+COPY --from=builder /app/dist .
