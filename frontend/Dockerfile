@@ -1,21 +1,13 @@
-# 使用 Node.js 23.5 基础镜像
-FROM node:23.5
+# 使用 Node.js 构建前端
+FROM node:23.5 as builder
+WORKDIR /app
 
 # 安装 pnpm
-RUN npm install -g pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
-# 设置工作目录
-WORKDIR /frontend
-
-# 安装依赖
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
-
-# 复制项目源码
+# 复制前端代码并安装依赖
 COPY . .
+RUN pnpm install && pnpm run build
 
-# 构建静态文件
-RUN pnpm run build
-
-# 默认运行静态文件服务器（在生产环境中将静态文件交给 Nginx）
-CMD ["pnpm", "run", "serve"]
+# 输出构建产物到指定目录
+CMD ["cp", "-r", "dist", "/frontend-dist"]
