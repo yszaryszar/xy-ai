@@ -4,7 +4,7 @@ services:
       context: ./frontend
     container_name: frontend
     restart: always
-    command: []
+    command: ["cp", "-r", "/app/dist", "/frontend-dist"]
     volumes:
       - ./frontend:/app
       - ./frontend-dist:/frontend

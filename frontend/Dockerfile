@@ -1,5 +1,5 @@
 # 使用 Node.js 构建前端
-FROM node:23.5-alpine
+FROM node:23.5-alpine as builder
 WORKDIR /app
 
 # 安装 pnpm
