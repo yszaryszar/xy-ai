@@ -1,37 +1,30 @@
 services:
   frontend:
-    image: node:23.5
-    container_name: frontend
-    working_dir: /app
-    volumes:
-      - ./frontend:/app
-    command: >
-      sh -c "pnpm install && pnpm build"
-    environment:
-      - NODE_ENV=production
     build:
       context: ./frontend
-    ports:
-      - "3000:3000" # 开发时访问端口
+    container_name: frontend
+#    volumes:
+#      - ./frontend:/app
     depends_on:
       - backend
 
   backend:
-    image: python:3.13.1-alpine
+    build:
+      context: ./backend
     container_name: backend
-    working_dir: /app
-    volumes:
-      - ./backend:/app
-    command: >
-      sh -c "pip install -r requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8000"
+#    working_dir: /app
+#    volumes:
+#      - ./backend:/app
     environment:
-      - PYTHONUNBUFFERED=1
+      - DOMAIN=api.xyai.xin
+    restart: always
     ports:
       - "8000:8000"
 
   nginx:
     image: nginx:alpine
     container_name: nginx
+    restart: always
     ports:
       - "80:80"
       - "443:443"
