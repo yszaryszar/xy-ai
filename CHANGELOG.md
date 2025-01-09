@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/yszaryszar/xy-ai/compare/v0.0.4...v0.0.6) (2025-01-09)
+
+
+### Bug Fixes
+
+* :bug: 修正了 Dockerfile 中的 FastAPI 启动路径，并更新了 nginx 配置以支持根域名和子域名的 HTTPS 访问 ([91afc92](https://github.com/yszaryszar/xy-ai/commit/91afc92cb33683ce5996f78c857332924114c53f))
+* :bug: 修正了 Nginx 配置文件，未找到文件时返回 404 错误 ([b501c12](https://github.com/yszaryszar/xy-ai/commit/b501c12dba8676f3db801047287320af7576ff77))
+* :bug: 移除冗余的子域名配置以简化 Nginx 配置文件 ([e3a0220](https://github.com/yszaryszar/xy-ai/commit/e3a0220ebc33f016f28308bde573e7b7be3317b7))
+
 ### [0.0.5](https://github.com/yszaryszar/xy-ai/compare/v0.0.3...v0.0.5) (2025-01-08)
 
 ### [0.0.4](https://github.com/yszaryszar/xy-ai/compare/v0.0.3...v0.0.4) (2025-01-08)
