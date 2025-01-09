@@ -1,5 +1,5 @@
 # 使用官方 Node 镜像
-FROM node:23.5-alpine AS builder
+FROM node:23.5 AS builder
 WORKDIR /app
 
 # 安装依赖并构建

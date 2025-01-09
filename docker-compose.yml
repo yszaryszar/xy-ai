@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: node:23.5-alpine
+    image: node:23.5
     container_name: frontend
     working_dir: /app
     volumes:
