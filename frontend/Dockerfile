@@ -9,7 +9,8 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 COPY . .
 RUN pnpm install && pnpm run build
 
-# 第二阶段：仅包含构建产物
-FROM alpine
-WORKDIR /frontend-dist
-COPY --from=builder /app/dist .
+# 第二阶段：使用 nginx 提供静态文件服务
+FROM nginx:alpine
+COPY --from=builder /app/dist /usr/share/nginx/html
+#EXPOSE 80 443  # 暴露端口
+#CMD ["nginx", "-g", "daemon off;"]
