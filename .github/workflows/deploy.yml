@@ -3,29 +3,30 @@ name: Deploy to Server
 on:
   push:
     branches:
-      - master # 当代码推送到 main 分支时触发
+      - master  # 监听 master 分支的提交
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. 检出代码
+    # 检出代码（GitHub 提供的官方 Action）
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. 设置 SSH 密钥
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.5.3
+    # 使用 SSH 直接在服务器上执行部署命令
+    - name: Deploy to Server
+      uses: appleboy/ssh-action@v0.1.8
       with:
-        ssh-private-key: ${{ secrets.DEPLOY_KEY }}
-
-    # 3. 部署代码到服务器
-    - name: Deploy to server
-      run: |
-        ssh -o StrictHostKeyChecking=no root@8.218.251.198 "
-        cd /root/wwwroot/xy-ai &&
-        git pull origin master &&
-        docker compose down &&
-        docker compose up -d --build
-        "
+        host: 8.218.251.198            # 替换为你的服务器 IP 地址
+        username: root                    # 替换为你的服务器用户名
+        key: ${{ secrets.DEPLOY_KEY }} # 使用 GitHub Secrets 存储的私钥
+        port: 22                          # SSH 默认端口
+        script: |
+          cd /root/wwwroot/xy-ai
+          echo "Pulling latest code from GitHub"
+          git pull origin master
+          echo "Rebuilding and restarting Docker containers"
+          docker compose down
+          docker compose up --build -d >> /var/log/deploy.log 2>&1
+          echo "Deployment completed successfully"
