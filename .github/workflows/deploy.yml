@@ -25,8 +25,8 @@ jobs:
         script: |
           cd /root/wwwroot/xy-ai
           echo "Pulling latest code from GitHub"
-          git pull origin master
+          git pull
           echo "Rebuilding and restarting Docker containers"
           docker compose down
-          docker compose up --build -d >> /var/log/deploy.log 2>&1
+          docker compose up -d --build >> /var/log/deploy.log 2>&1
           echo "Deployment completed successfully"
