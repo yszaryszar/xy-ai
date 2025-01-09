@@ -3,8 +3,8 @@ services:
     build:
       context: ./frontend
     container_name: frontend
-#    volumes:
-#      - ./frontend:/app
+    volumes:
+      - ./frontend/dist:/app/dist
     depends_on:
       - backend
 
@@ -12,9 +12,6 @@ services:
     build:
       context: ./backend
     container_name: backend
-#    working_dir: /app
-#    volumes:
-#      - ./backend:/app
     environment:
       - DOMAIN=api.xyai.xin
     restart: always
