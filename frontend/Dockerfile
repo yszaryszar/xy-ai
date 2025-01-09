@@ -11,5 +11,5 @@ RUN pnpm build
 # 使用 Nginx 托管静态文件
 FROM nginx:alpine AS server
 COPY --from=builder /app/dist /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
