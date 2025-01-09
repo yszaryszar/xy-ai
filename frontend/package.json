@@ -38,7 +38,6 @@
     "eslint-plugin-oxlint": "^0.11.0",
     "eslint-plugin-vue": "^9.30.0",
     "jsdom": "^25.0.1",
-    "mockjs": "^1.1.0",
     "npm-run-all2": "^7.0.1",
     "oxlint": "^0.11.0",
     "postcss": "^8.4.49",

@@ -1,16 +1,15 @@
-# 使用 Node.js 构建前端代码
-FROM node:23.5 as builder
+# 使用官方 Node 镜像
+FROM node:23.5-alpine AS builder
 WORKDIR /app
 
-# 安装 pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
-
-# 复制代码并安装依赖
+# 安装依赖并构建
+COPY package.json pnpm-lock.yaml ./
+RUN corepack enable && pnpm install
 COPY . .
-RUN pnpm install && pnpm run build
+RUN pnpm build
 
-# 第二阶段：使用 nginx 提供静态文件服务
-FROM nginx:alpine
+# 使用 Nginx 托管静态文件
+FROM nginx:alpine AS server
 COPY --from=builder /app/dist /usr/share/nginx/html
-#EXPOSE 80 443  # 暴露端口
-#CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
