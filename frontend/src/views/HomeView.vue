@@ -6,12 +6,14 @@ import Footer from '@/components/AppFooter.vue'
 
 <template>
   <el-container class="bg-backgroundLight h-screen">
-    <!-- Header -->
-    <el-header class="bg-white text-primary !h-20 flex mb-2 shadow-md">
-      <Header />
-    </el-header>
+    <el-affix>
+      <!-- Header -->
+      <el-header class="bg-white text-primary !h-20 flex mb-2 shadow-md">
+        <Header />
+      </el-header>
+    </el-affix>
     <!-- Main Content -->
-    <el-main class="py-10 max-w-screen-xl m-auto items-stretch">
+    <el-main class="py-10 max-w-screen-xl m-auto items-stretch min-h-[200vh]">
       <Main />
     </el-main>
     <!-- Footer -->

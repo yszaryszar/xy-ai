@@ -15,7 +15,10 @@ const input = ref('')
   >
     <!-- 网站名称 -->
     <el-col :span="4">
-      <h1 class="text-3xl font-bold">新语AI</h1>
+      <a href="/" class="flex items-center">
+        <h1 class="text-3xl font-bold">新语AI</h1>
+        <img src="/logo.svg" alt="logo" class="ml-2 h-10" />
+      </a>
     </el-col>
 
     <!-- 菜单栏 -->
