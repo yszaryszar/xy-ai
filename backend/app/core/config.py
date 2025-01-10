@@ -4,7 +4,11 @@
 # @Author  : yszar
 # @File    : config.py
 # @Software: PyCharm
-from pydantic import BaseSettings
+from dotenv import load_dotenv
+from pydantic_settings import BaseSettings
+
+# 从 .env 文件加载环境变量
+load_dotenv()
 
 
 class Settings(BaseSettings):
